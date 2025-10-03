@@ -29,7 +29,7 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
         <img src="/home.png" alt="Home" className="w-16 h-16" />
       </button>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto mt-64">
         
 
         {/* Header Row */}
@@ -54,25 +54,26 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
             leaderboard.slice(0, 10).map((attempt, index) => (
               <div
                 key={attempt.id}
-                className="grid grid-cols-[150px_1fr_220px] gap-3 items-center"
+                className="flex items-center"
               >
                 {/* Rank Badge */}
-                <div className="flex items-center justify-start">
-                  <div
-                    className="w-28 h-14 flex items-center justify-center text-3xl font-bold text-white bg-[#B98BB8] border-4 border-white"
-                    style={{ borderRadius: '200px' }}
-                  >
-                    {index + 1}
-                  </div>
+                <div
+                  className="w-28 h-14 flex items-center justify-center text-3xl font-bold text-white bg-[#B98BB8] border-4 border-white shadow-lg relative z-10"
+                  style={{ borderRadius: '200px' }}
+                >
+                  {index + 1}
                 </div>
 
                 {/* Name Section */}
-                <div className="bg-[#B3E5FC] h-14 flex items-center px-8 text-2xl font-semibold text-white border-4 border-white" style={{ borderRadius: '200px' }}>
+                <div className="flex-1 h-14 bg-[#B3E5FC] flex items-center px-8 text-2xl font-semibold text-white border-y-4 border-white shadow-lg -mx-4">
                   {attempt.name}
                 </div>
 
                 {/* Time Section */}
-                <div className="bg-white h-14 flex items-center justify-center text-2xl font-bold text-[#B98BB8] border-4 border-white shadow-md" style={{ borderRadius: '200px' }}>
+                <div
+                  className="w-56 h-14 bg-white flex items-center justify-center text-2xl font-bold text-[#B98BB8] border-4 border-white shadow-lg relative z-10"
+                  style={{ borderRadius: '200px' }}
+                >
                   {formatTime(attempt.timeTakenMs)}
                 </div>
               </div>
