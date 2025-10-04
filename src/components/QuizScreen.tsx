@@ -7,9 +7,10 @@ import { formatTime } from '../utils/storage';
 interface QuizScreenProps {
   questions: Question[];
   onComplete: (answers: UserAnswer[], timeTakenMs: number) => void;
+  onBackToHome?: () => void;
 }
 
-export default function QuizScreen({ questions, onComplete }: QuizScreenProps) {
+export default function QuizScreen({ questions, onComplete, onBackToHome }: QuizScreenProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<'A' | 'B' | 'C' | 'D' | null>(null);
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
@@ -98,6 +99,16 @@ export default function QuizScreen({ questions, onComplete }: QuizScreenProps) {
 
   return (
     <div className="min-h-screen p-6 flex items-center justify-center bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: 'url(/bg3.png)' }}>
+      {/* Home Button */}
+      {onBackToHome && (
+        <button
+          onClick={onBackToHome}
+          className="absolute top-12 left-12 hover:scale-110 transition-transform z-50"
+        >
+          <img src="/home.png" alt="Home" className="w-16 h-16" />
+        </button>
+      )}
+
       <div className="absolute top-12 right-12 flex flex-col items-center">
         <div className="relative flex flex-col items-center w-32 ">
           <img src="/clock.png" alt="clock" className="absolute top-0 left-1/2 transform -translate-x-1/2 object-contain" style={{ zIndex: 0, width: '100%', height: 'auto' }} />

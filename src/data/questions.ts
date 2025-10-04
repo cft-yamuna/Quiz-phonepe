@@ -462,11 +462,24 @@ export const questions: Question[] = [
 ];
 
 export function getRandomQuestions(count: number = 6): Question[] {
-  // Fisher-Yates shuffle algorithm for true randomization
+  // Create a copy of the questions array
   const shuffled = [...questions];
+
+  // Use crypto.getRandomValues for better randomness if available, fallback to Math.random
+  const getRandomIndex = (max: number): number => {
+    if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+      const array = new Uint32Array(1);
+      crypto.getRandomValues(array);
+      return array[0] % max;
+    }
+    return Math.floor(Math.random() * max);
+  };
+
+  // Fisher-Yates shuffle with enhanced randomization
   for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = getRandomIndex(i + 1);
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
+
   return shuffled.slice(0, count);
 }

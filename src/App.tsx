@@ -79,10 +79,10 @@ function App() {
     <>
       {currentScreen === 'start' && <StartScreen onStart={handleStartQuiz} onViewLeaderboard={handleViewLeaderboard} />}
 
-      {currentScreen === 'form' && <FormScreen onStartQuiz={handleFormSubmit} />}
+      {currentScreen === 'form' && <FormScreen onStartQuiz={handleFormSubmit} onBackToHome={handleBackToHome} />}
 
       {currentScreen === 'quiz' && (
-        <QuizScreen questions={quizQuestions} onComplete={handleQuizComplete} />
+        <QuizScreen questions={quizQuestions} onComplete={handleQuizComplete} onBackToHome={handleBackToHome} />
       )}
 
       {currentScreen === 'score' && currentAttempt && (

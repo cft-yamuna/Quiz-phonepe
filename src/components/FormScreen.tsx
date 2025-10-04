@@ -3,9 +3,10 @@ import { CheckCircle2, AlertCircle, BookOpen, Clock, Target } from 'lucide-react
 
 interface FormScreenProps {
   onStartQuiz: (name: string, mobile: string, email?: string) => Promise<void>;
+  onBackToHome?: () => void;
 }
 
-export default function FormScreen({ onStartQuiz }: FormScreenProps) {
+export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProps) {
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
   const [email, setEmail] = useState('');
@@ -53,7 +54,17 @@ export default function FormScreen({ onStartQuiz }: FormScreenProps) {
   };
 
   return (
-    <div className="min-h-screen p-6 flex items-center justify-end bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/bg2.png)' }}>
+    <div className="min-h-screen p-6 flex items-center justify-end bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: 'url(/bg2.png)' }}>
+      {/* Home Button */}
+      {onBackToHome && (
+        <button
+          onClick={onBackToHome}
+          className="absolute top-12 left-12 hover:scale-110 transition-transform z-50"
+        >
+          <img src="/home.png" alt="Home" className="w-16 h-16" />
+        </button>
+      )}
+
       <div className="w-1/2 flex items-center justify-center  " >
         <div className="w-full max-w-2xl ">
             <form onSubmit={handleSubmit} >
