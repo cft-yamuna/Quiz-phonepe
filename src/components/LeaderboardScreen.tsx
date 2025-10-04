@@ -65,7 +65,7 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
                 </div>
 
                 {/* Name Section */}
-                <div className="flex-1 h-14 bg-[#B3E5FC] flex items-center px-8 text-2xl font-semibold text-white border-y-4 border-white shadow-lg -mx-4">
+                <div className="flex-1 h-14 bg-[#B3E5FC] flex items-center px-16 text-2xl font-semibold text-white border-y-4 border-white shadow-lg -mx-8">
                   {attempt.name}
                 </div>
 

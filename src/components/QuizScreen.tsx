@@ -108,7 +108,7 @@ export default function QuizScreen({ questions, onComplete }: QuizScreenProps) {
         </div>
       </div>
 
-      <div className="w-full max-w-5xl px-12">
+      <div className="w-full max-w-8xl px-40 ">
         {/* Question Number Badge - Overlapping */}
         <div className="flex justify-center mb-[-40px] relative z-10">
           <div className="w-20 h-20 rounded-full bg-[#B3E5FC] border-2 border-dashed border-[#5F259D] flex items-center justify-center">
@@ -117,15 +117,15 @@ export default function QuizScreen({ questions, onComplete }: QuizScreenProps) {
         </div>
 
         {/* Question Card */}
-        <div className="bg-white px-12 pt-16 pb-10 mb-12 shadow-[0_4px_10px_rgba(95,37,157,0.4)]" style={{ borderRadius: '200px' }}>
+        <div className="bg-white px-12 pt-16 pb-10 mb-16 shadow-[0_4px_10px_rgba(95,37,157,0.4)]" style={{ borderRadius: '200px' }}>
           <h2 className="text-3xl font-bold text-[#5F259D] text-center leading-relaxed">
             {currentQuestion.question}
           </h2>
         </div>
 
         {/* Options */}
-        <div className="mb-12">
-          <div className="grid grid-cols-2 gap-6 mb-6">
+        <div className="mb-16">
+          <div className="grid grid-cols-2 gap-6 mb-12">
             {renderOption('A', currentQuestion.optionA)}
             {renderOption('B', currentQuestion.optionB)}
           </div>
