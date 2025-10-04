@@ -54,12 +54,12 @@ export default function FormScreen({ onStartQuiz }: FormScreenProps) {
 
   return (
     <div className="min-h-screen p-6 flex items-center justify-end bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/bg2.png)' }}>
-      <div className="w-1/2 flex items-center justify-center">
-        <div className="w-full max-w-lg ">
+      <div className="w-1/2 flex items-center justify-center  " >
+        <div className="w-full max-w-2xl ">
             <form onSubmit={handleSubmit} >
               <div className="space-y-12">
               <div >
-                <label htmlFor="name" className="block text-4xl text-[#5F259D] font-bold mb-2">
+                <label htmlFor="name" className="block text-4xl text-[#5F259D] font-bold  mb-4" style={{ fontFamily: 'extrabold' }}>
                   Name*
                 </label>
                 <input
@@ -67,12 +67,12 @@ export default function FormScreen({ onStartQuiz }: FormScreenProps) {
                   id="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white shadow-[0_4px_6px_rgba(95,37,157,0.6)] ${
+                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white ${
                     errors.name
                       ? 'border-red-300 focus:border-red-500'
                       : 'border-[#7960BF] focus:border-purple-400'
                   } focus:outline-none`}
-                  style={{ borderRadius: '14px' }}
+                  style={{ borderRadius: '14px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
                 />
                 {errors.name && (
                   <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
@@ -83,20 +83,26 @@ export default function FormScreen({ onStartQuiz }: FormScreenProps) {
               </div>
 
               <div>
-                <label htmlFor="mobile" className="block text-4xl text-[#5F259D] font-bold mb-2">
+                <label htmlFor="mobile" className="block text-4xl text-[#5F259D] font-bold mb-4" style={{ fontFamily: 'extrabold' }}>
                   Mobile No.*
                 </label>
                 <input
                   type="tel"
                   id="mobile"
                   value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
-                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white shadow-[0_4px_6px_rgba(95,37,157,0.6)] ${
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, '');
+                    if (value.length <= 10) {
+                      setMobile(value);
+                    }
+                  }}
+                  maxLength={10}
+                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white ${
                     errors.mobile
                       ? 'border-red-300 focus:border-red-500'
                       : 'border-[#7960BF] focus:border-purple-400'
                   } focus:outline-none`}
-                  style={{ borderRadius: '14px' }}
+                  style={{ borderRadius: '14px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
                 />
                 {errors.mobile && (
                   <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
@@ -107,7 +113,7 @@ export default function FormScreen({ onStartQuiz }: FormScreenProps) {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-4xl text-[#5F259D] font-bold mb-2">
+                <label htmlFor="email" className="block text-4xl text-[#5F259D] font-bold mb-4" style={{ fontFamily: 'extrabold' }}>
                   Email ID <span className='font-normal'>(Optional)</span> 
                 </label>
                 <input
@@ -115,12 +121,12 @@ export default function FormScreen({ onStartQuiz }: FormScreenProps) {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white shadow-[0_4px_6px_rgba(95,37,157,0.6)] ${
+                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white ${
                     errors.email
                       ? 'border-red-300 focus:border-red-500'
                       : 'border-[#7960BF] focus:border-purple-400'
                   } focus:outline-none`}
-                  style={{ borderRadius: '14px' }}
+                  style={{ borderRadius: '14px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
                 />
                 {errors.email && (
                   <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
@@ -154,8 +160,8 @@ export default function FormScreen({ onStartQuiz }: FormScreenProps) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-60 py-5 bg-[#5F259D] text-white text-3xl font-bold transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 "
-                  style={{ borderRadius: '60px' }}
+                  className="w-[280px] py-5 bg-[#5F259D] text-white text-3xl font-bold transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 "
+                  style={{ borderRadius: '60px', boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)' }}
                 >
                   {isSubmitting ? 'Checking...' : 'Start Quiz'}
                 </button>

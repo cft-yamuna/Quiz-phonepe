@@ -69,7 +69,7 @@ export default function ScoreScreen({ attempt, attemptId, onViewLeaderboard, onR
       <div className="w-full max-w-3xl text-center ">
         {/* Score */}
         <div className="mb-8">
-          <h1 className="text-8xl font-bold text-[#5F259D] mb-4">
+          <h1 className="text-8xl font-bold text-[#8559B7] mb-4 " style={{ fontFamily: 'extrabold' }}>
             Score : {attempt.score}/6
           </h1>
         </div>
@@ -98,7 +98,7 @@ export default function ScoreScreen({ attempt, attemptId, onViewLeaderboard, onR
 
         {/* Rank */}
         <div className="mb-16">
-          <p className="text-4xl font-bold text-[#8559B7]">
+          <p className="text-4xl  text-[#8559B7]" style={{ fontFamily: 'extrabold' }}>
             You are currently at {rank > 0 ? `${rank}${getRankSuffix(rank)}` : '-'} Rank.
           </p>
         </div>
@@ -107,8 +107,8 @@ export default function ScoreScreen({ attempt, attemptId, onViewLeaderboard, onR
         <div className="flex justify-center">
           <button
             onClick={onViewLeaderboard}
-            className="px-16 py-5 bg-[#5F259D] text-white text-3xl font-bold hover:bg-[#4a1d7a] transition-all shadow-2xl hover:scale-105"
-            style={{ borderRadius: '200px' }}
+            className="px-16 py-5 bg-[#5F259D] text-white text-3xl font-bold hover:bg-[#4a1d7a] transition-all hover:scale-105"
+            style={{ borderRadius: '200px', boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)' }}
           >
             View Leaderboard
           </button>

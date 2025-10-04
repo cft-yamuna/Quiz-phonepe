@@ -36,11 +36,11 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
         <div className="grid grid-cols-[150px_1fr_220px] gap-4 mb-6 px-8">
           <div className="text-2xl font-bold text-black">Rank</div>
           <div className="text-2xl font-bold text-black">Name</div>
-          <div className="text-2xl font-bold text-black text-right">Time (in minutes)</div>
+          <div className="text-2xl font-bold text-black text-right">Time <span className='font-normal text-[20px]'>(in minutes)</span> </div>
         </div>
 
         {/* Leaderboard Entries */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {loading ? (
             <div className="text-center py-16">
               <p className="text-black text-2xl">Loading leaderboard...</p>
@@ -58,7 +58,7 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
               >
                 {/* Rank Badge */}
                 <div
-                  className="w-28 h-14 flex items-center justify-center text-3xl font-bold text-white bg-[#B98BB8] border-2 border-white shadow-lg relative z-10"
+                  className="w-36 h-14 flex items-center justify-center text-3xl font-bold text-white bg-[#B98BB8] border-2 border-white shadow-lg relative z-10"
                   style={{ borderRadius: '200px' }}
                 >
                   {index + 1}

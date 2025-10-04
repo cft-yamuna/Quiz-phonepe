@@ -60,18 +60,18 @@ export default function QuizScreen({ questions, onComplete }: QuizScreenProps) {
 
   const getOptionClass = (option: 'A' | 'B' | 'C' | 'D') => {
     if (!selectedAnswer) {
-      return 'bg-white hover:bg-[#E8F5E9] border-2 border-transparent shadow-[0_4px_10px_rgba(95,37,157,0.3)]';
+      return 'bg-white hover:bg-[#E8F5E9] border-2 border-transparent';
     }
 
     if (option === currentQuestion.correctAnswer) {
-      return 'bg-[#3BAF49] border-2 border-[#3BAF49] text-white shadow-[0_4px_10px_rgba(95,37,157,0.4)]';
+      return 'bg-[#3BAF49] border-2 border-[#3BAF49] text-white';
     }
 
     if (option === selectedAnswer && option !== currentQuestion.correctAnswer) {
-      return 'bg-[#D0312C] border-2 border-[#D0312C] text-white shadow-[0_4px_10px_rgba(95,37,157,0.4)]';
+      return 'bg-[#D0312C] border-2 border-[#D0312C] text-white';
     }
 
-    return 'bg-white border-2 border-transparent shadow-[0_4px_10px_rgba(95,37,157,0.3)] opacity-60';
+    return 'bg-white border-2 border-transparent opacity-60';
   };
 
   const renderOption = (option: 'A' | 'B' | 'C' | 'D', text: string) => {
@@ -84,13 +84,13 @@ export default function QuizScreen({ questions, onComplete }: QuizScreenProps) {
         className={`w-full text-left px-8 py-6 transition-all ${getOptionClass(
           option
         )} ${!selectedAnswer ? 'cursor-pointer hover:scale-[1.02]' : 'cursor-default'}`}
-        style={{ borderRadius: '200px' }}
+        style={{ borderRadius: '200px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
       >
         <div className="flex items-center gap-6">
-          <div className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-3xl border-2 bg-[#B3E5FC] text-[#5F259D] border-dashed border-[#5F259D]">
+          <div className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-4xl border-2 bg-[#B3E5FC] text-[#5F259D] border-dashed border-[#5F259D]">
             {optionLower}
           </div>
-          <span className={`flex-1 text-2xl font-semibold ${!selectedAnswer ? 'text-[#5F259D]' : ''}`}>{text}</span>
+          <span className={`flex-1 text-3xl font-semibold ${!selectedAnswer ? 'text-[#5F259D]' : ''}`}>{text}</span>
         </div>
       </button>
     );
@@ -112,24 +112,24 @@ export default function QuizScreen({ questions, onComplete }: QuizScreenProps) {
         {/* Question Number Badge - Overlapping */}
         <div className="flex justify-center mb-[-40px] relative z-10">
           <div className="w-20 h-20 rounded-full bg-[#B3E5FC] border-2 border-dashed border-[#5F259D] flex items-center justify-center">
-            <span className="text-4xl font-bold text-[#5F259D]">{currentQuestionIndex + 1}</span>
+            <span className="text-4xl font-bold text-[#5F259D] ">{currentQuestionIndex + 1}</span>
           </div>
         </div>
 
         {/* Question Card */}
-        <div className="bg-white px-12 pt-16 pb-10 mb-16 shadow-[0_4px_10px_rgba(95,37,157,0.4)]" style={{ borderRadius: '200px' }}>
-          <h2 className="text-3xl font-bold text-[#5F259D] text-center leading-relaxed">
+        <div className="bg-white px-12 pt-16 pb-10 mb-16" style={{ borderRadius: '200px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}>
+          <h2 className="text-4xl font-bold text-[#5F259D] text-center leading-relaxed" style={{ fontFamily: 'extrabold' }} >
             {currentQuestion.question}
           </h2>
         </div>
 
         {/* Options */}
-        <div className="mb-16">
-          <div className="grid grid-cols-2 gap-6 mb-12">
+        <div className="mb-16 ">
+          <div className="grid grid-cols-2 gap-32 mb-10">
             {renderOption('A', currentQuestion.optionA)}
             {renderOption('B', currentQuestion.optionB)}
           </div>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-32">
             {renderOption('C', currentQuestion.optionC)}
             {renderOption('D', currentQuestion.optionD)}
           </div>
@@ -140,12 +140,12 @@ export default function QuizScreen({ questions, onComplete }: QuizScreenProps) {
           <button
             onClick={handleNext}
             disabled={!selectedAnswer}
-            className={`px-12 py-4 text-3xl font-bold transition-all shadow-[0_6px_15px_rgba(95,37,157,0.4)] ${
+            className={`px-12 py-4 text-3xl font-bold transition-all ${
               selectedAnswer
                 ? 'bg-[#5F259D] text-white hover:bg-[#4a1d7a] hover:scale-105 cursor-pointer'
                 : 'bg-white text-[#5F259D] cursor-not-allowed opacity-60'
             }`}
-            style={{ borderRadius: '200px' }}
+            style={{ borderRadius: '200px', boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)' }}
           >
             {isLastQuestion ? 'Finish Quiz' : 'Next Question'}
           </button>
