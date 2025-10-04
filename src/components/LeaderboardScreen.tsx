@@ -58,20 +58,20 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
               >
                 {/* Rank Badge */}
                 <div
-                  className="w-28 h-14 flex items-center justify-center text-3xl font-bold text-white bg-[#B98BB8] border-4 border-white shadow-lg relative z-10"
+                  className="w-28 h-14 flex items-center justify-center text-3xl font-bold text-white bg-[#B98BB8] border-2 border-white shadow-lg relative z-10"
                   style={{ borderRadius: '200px' }}
                 >
                   {index + 1}
                 </div>
 
                 {/* Name Section */}
-                <div className="flex-1 h-14 bg-[#B3E5FC] flex items-center px-16 text-2xl font-semibold text-white border-y-4 border-white shadow-lg -mx-8">
+                <div className="flex-1 h-14 bg-black/10 flex items-center px-16 text-2xl font-semibold text-white border-y-2 border-white shadow-lg -mx-8">
                   {attempt.name}
                 </div>
 
                 {/* Time Section */}
                 <div
-                  className="w-56 h-14 bg-white flex items-center justify-center text-2xl font-bold text-[#B98BB8] border-4 border-white shadow-lg relative z-10"
+                  className="w-56 h-14 bg-white flex items-center justify-center text-2xl font-bold text-[#B98BB8] border-2 border-white shadow-lg relative z-10"
                   style={{ borderRadius: '200px' }}
                 >
                   {formatTime(attempt.timeTakenMs)}
