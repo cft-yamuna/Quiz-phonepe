@@ -76,7 +76,9 @@ export async function getSortedLeaderboard(): Promise<QuizAttempt[]> {
 
 export async function getTopLeaderboard(limit: number = 10): Promise<QuizAttempt[]> {
   const sorted = await getSortedLeaderboard();
-  return sorted.slice(0, limit);
+  // Filter for only perfect scores (6/6)
+  const perfectScores = sorted.filter(attempt => attempt.score === 6);
+  return perfectScores.slice(0, limit);
 }
 
 export async function getRank(attemptId: string): Promise<number> {
