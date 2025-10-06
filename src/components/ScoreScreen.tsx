@@ -97,11 +97,13 @@ export default function ScoreScreen({ attempt, attemptId, onViewLeaderboard, onR
         </div>
 
         {/* Rank */}
-        <div className="mb-16">
-          <p className="text-4xl  text-[#8559B7]" style={{ fontFamily: 'extrabold' }}>
-            You are currently at {rank > 0 ? `${rank}${getRankSuffix(rank)}` : '-'} Rank.
-          </p>
-        </div>
+        {attempt.score === 6 && (
+          <div className="mb-16">
+            <p className="text-4xl  text-[#8559B7]" style={{ fontFamily: 'extrabold' }}>
+              You are currently at {rank > 0 ? `${rank}${getRankSuffix(rank)}` : '-'} Rank.
+            </p>
+          </div>
+        )}
 
         {/* View Leaderboard Button */}
         <div className="flex justify-center">
