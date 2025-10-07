@@ -15,6 +15,7 @@ function App() {
   const [userEmail, setUserEmail] = useState<string | undefined>();
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
   const [currentAttempt, setCurrentAttempt] = useState<QuizAttempt | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleStartQuiz = () => {
     setCurrentScreen('form');
@@ -36,6 +37,10 @@ function App() {
   };
 
   const handleQuizComplete = async (answers: UserAnswer[], timeTakenMs: number) => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
     const score = answers.filter((a) => a.isCorrect).length;
 
     const attempt: QuizAttempt = {
@@ -58,6 +63,8 @@ function App() {
       // Still show score screen even if save fails
       setCurrentAttempt(attempt);
       setCurrentScreen('score');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
