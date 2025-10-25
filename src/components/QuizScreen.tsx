@@ -88,10 +88,10 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
         style={{ borderRadius: '200px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
       >
         <div className="flex items-center gap-6">
-          <div className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-4xl border-2 bg-[#B3E5FC] text-[#5F259D] border-dashed border-[#5F259D]">
+          <div className="flex-shrink-0 w-20 h-20 rounded-full flex items-center justify-center font-bold text-5xl bg-[#266FB5] text-white ">
             {optionLower}
           </div>
-          <span className={`flex-1 text-3xl font-semibold ${!selectedAnswer ? 'text-[#5F259D]' : ''}`}>{text}</span>
+          <span className={`flex-1 text-3xl font-semibold ${!selectedAnswer ? 'text-[#373435]' : ''}`}>{text}</span>
         </div>
       </button>
     );
@@ -119,28 +119,28 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
         </div>
       </div>
 
-      <div className="w-full max-w-8xl px-40 ">
-        {/* Question Number Badge - Overlapping */}
-        <div className="flex justify-center mb-[-40px] relative z-10">
-          <div className="w-20 h-20 rounded-full bg-[#B3E5FC] border-2 border-dashed border-[#5F259D] flex items-center justify-center">
-            <span className="text-4xl font-bold text-[#5F259D] ">{currentQuestionIndex + 1}</span>
+      <div className="w-full max-w-full px-20 mt-20">
+        {/* Question Number Badge - Fixed Position */}
+        <div className="flex justify-center mb-8">
+          <div className="w-32 h-32 rounded-full bg-[#266FB5] border-[1px] border-dashed border-white flex items-center justify-center">
+            <div className="w-28 h-28 rounded-full bg-white flex items-center justify-center">
+              <span className="text-7xl font-bold text-[#266FB5]">{currentQuestionIndex + 1}</span>
+            </div>
           </div>
         </div>
 
         {/* Question Card */}
-        <div className="bg-white px-12 pt-16 pb-10 mb-16" style={{ borderRadius: '200px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}>
-          <h2 className="text-4xl font-bold text-[#5F259D] text-center leading-relaxed" style={{ fontFamily: 'extrabold' }} >
+        <div className="pb-10 mb-16">
+          <h2 className="text-4xl font-extrabold text-white text-center leading-relaxed">
             {currentQuestion.question}
           </h2>
         </div>
 
         {/* Options */}
-        <div className="mb-16 ">
-          <div className="grid grid-cols-2 gap-32 mb-10">
+        <div className="mb-16">
+          <div className="flex flex-col gap-8">
             {renderOption('A', currentQuestion.optionA)}
             {renderOption('B', currentQuestion.optionB)}
-          </div>
-          <div className="grid grid-cols-2 gap-32">
             {renderOption('C', currentQuestion.optionC)}
             {renderOption('D', currentQuestion.optionD)}
           </div>
@@ -151,12 +151,12 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
           <button
             onClick={handleNext}
             disabled={!selectedAnswer}
-            className={`px-12 py-4 text-3xl font-bold transition-all ${
+            className={`px-12 py-4 text-3xl font-bold transition-all border-2 ${
               selectedAnswer
-                ? 'bg-[#5F259D] text-white hover:bg-[#4a1d7a] hover:scale-105 cursor-pointer'
-                : 'bg-white text-[#5F259D] cursor-not-allowed opacity-60'
+                ? 'bg-transparent text-white border-white hover:scale-105 cursor-pointer'
+                : 'bg-transparent text-white border-white cursor-not-allowed opacity-60'
             }`}
-            style={{ borderRadius: '200px', boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)' }}
+            style={{ borderRadius: '200px' }}
           >
             {isLastQuestion ? 'Finish Quiz' : 'Next Question'}
           </button>

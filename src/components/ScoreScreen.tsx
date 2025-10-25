@@ -69,7 +69,7 @@ export default function ScoreScreen({ attempt, attemptId, onViewLeaderboard, onR
       <div className="w-full max-w-3xl text-center ">
         {/* Score */}
         <div className="mb-8">
-          <h1 className="text-8xl font-bold text-[#8559B7] mb-4 " style={{ fontFamily: 'extrabold' }}>
+          <h1 className="text-8xl font-extrabold text-[#8559B7] mb-4 ">
             Score : {attempt.score}/6
           </h1>
         </div>
@@ -99,7 +99,7 @@ export default function ScoreScreen({ attempt, attemptId, onViewLeaderboard, onR
         {/* Rank */}
         {attempt.score === 6 && (
           <div className="mb-16">
-            <p className="text-4xl  text-[#8559B7]" style={{ fontFamily: 'extrabold' }}>
+            <p className="text-4xl font-extrabold text-[#8559B7]">
               You are currently at {rank > 0 ? `${rank}${getRankSuffix(rank)}` : '-'} Rank.
             </p>
           </div>

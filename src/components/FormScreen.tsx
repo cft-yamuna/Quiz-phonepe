@@ -3,10 +3,9 @@ import { CheckCircle2, AlertCircle, BookOpen, Clock, Target } from 'lucide-react
 
 interface FormScreenProps {
   onStartQuiz: (name: string, mobile: string, email?: string) => Promise<void>;
-  onBackToHome?: () => void;
 }
 
-export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProps) {
+export default function FormScreen({ onStartQuiz }: FormScreenProps) {
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
   const [email, setEmail] = useState('');
@@ -54,36 +53,26 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
   };
 
   return (
-    <div className="min-h-screen p-6 flex items-center justify-end bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: 'url(/bg2.png)' }}>
-      {/* Home Button */}
-      {onBackToHome && (
-        <button
-          onClick={onBackToHome}
-          className="absolute top-12 left-12 hover:scale-110 transition-transform z-50"
-        >
-          <img src="/home.png" alt="Home" className="w-16 h-16" />
-        </button>
-      )}
-
-      <div className="w-1/2 flex items-center justify-center  " >
-        <div className="w-full max-w-2xl ">
+    <div className="min-h-screen p-6 flex items-start justify-start pt-20 pl-20 bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: 'url(/bg2.png)' }}>
+      <div className="w-full flex items-start justify-start" >
+        <div className="w-full max-w-4xl  mt-16">
             <form onSubmit={handleSubmit} >
               <div className="space-y-12">
               <div >
-                <label htmlFor="name" className="block text-4xl text-[#5F259D] font-bold  mb-4" style={{ fontFamily: 'extrabold' }}>
-                  Name*
+                <label htmlFor="name" className="block text-5xl text-[#266FB5] font-extrabold  mb-8">
+                  Name
                 </label>
                 <input
                   type="text"
                   id="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white ${
+                  className={`w-full px-8 py-4 text-4xl transition-colors bg-[#F0F0F0] ${
                     errors.name
-                      ? 'border-red-300 focus:border-red-500'
-                      : 'border-[#7960BF] focus:border-purple-400'
+                      ? 'border-2 border-red-300 focus:border-red-500'
+                      : 'border-0'
                   } focus:outline-none`}
-                  style={{ borderRadius: '14px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
+                  style={{ borderRadius: '14px' }}
                 />
                 {errors.name && (
                   <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
@@ -94,8 +83,8 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
               </div>
 
               <div>
-                <label htmlFor="mobile" className="block text-4xl text-[#5F259D] font-bold mb-4" style={{ fontFamily: 'extrabold' }}>
-                  Mobile No.*
+                <label htmlFor="mobile" className="block text-5xl text-[#266FB5] font-extrabold mb-8">
+                  Mobile No.
                 </label>
                 <input
                   type="tel"
@@ -108,12 +97,12 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
                     }
                   }}
                   maxLength={10}
-                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white ${
+                  className={`w-full px-8 py-4 text-4xl transition-colors bg-[#F0F0F0] ${
                     errors.mobile
-                      ? 'border-red-300 focus:border-red-500'
-                      : 'border-[#7960BF] focus:border-purple-400'
+                      ? 'border-2 border-red-300 focus:border-red-500'
+                      : 'border-0'
                   } focus:outline-none`}
-                  style={{ borderRadius: '14px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
+                  style={{ borderRadius: '14px' }}
                 />
                 {errors.mobile && (
                   <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
@@ -124,20 +113,20 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-4xl text-[#5F259D] font-bold mb-4" style={{ fontFamily: 'extrabold' }}>
-                  Email ID <span className='font-normal'>(Optional)</span> 
+                <label htmlFor="email" className="block text-5xl text-[#266FB5] font-extrabold mb-8">
+                  Email ID <span className='font-normal'>(Optional)</span>
                 </label>
                 <input
                   type="email"
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white ${
+                  className={`w-full px-8 py-4 text-4xl transition-colors bg-[#F0F0F0] ${
                     errors.email
-                      ? 'border-red-300 focus:border-red-500'
-                      : 'border-[#7960BF] focus:border-purple-400'
+                      ? 'border-2 border-red-300 focus:border-red-500'
+                      : 'border-0'
                   } focus:outline-none`}
-                  style={{ borderRadius: '14px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
+                  style={{ borderRadius: '14px' }}
                 />
                 {errors.email && (
                   <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
@@ -155,8 +144,10 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
                     onChange={(e) => setAgreedToTerms(e.target.checked)}
                     className="mt-1 w-24 h-12 rounded border-2  text-[#5F259D] cursor-pointer "
                   />
-                  <span className="text-2xl text-black italic">
-                    *By continuing, you allow PhonePe to use your details for notifying your winning status and coordinating the delivery of the prize you may have
+                  <span className="text-3xl text-black italic leading-relaxed">
+                    *By continuing, you allow to use your details for notifying
+your winning status and coordinating the delivery of the
+prize you may have
                   </span>
                 </label>
                 {errors.terms && (
@@ -167,11 +158,11 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
                 )}
               </div>
               </div>
-              <div className="flex justify-start mt-14">
+              <div className="flex justify-center mt-20">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-[280px] py-5 bg-[#5F259D] text-white text-3xl font-bold transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 "
+                  className="w-[380px] py-6 bg-gradient-to-r from-[#41B646] to-[#A8D61F] text-white text-4xl font-bold transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 "
                   style={{ borderRadius: '60px', boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)' }}
                 >
                   {isSubmitting ? 'Checking...' : 'Start Quiz'}
