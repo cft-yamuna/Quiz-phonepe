@@ -22,63 +22,68 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
 
   return (
     <div className="min-h-screen p-6 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/bg5.png)' }}>
-      <button
-        onClick={onBack}
-        className="absolute top-12 left-12 hover:scale-110 transition-transform"
-      >
-        <img src="/home.png" alt="Home" className="w-16 h-16" />
-      </button>
-
-      <div className="max-w-7xl mx-auto mt-64">
+      <div className="max-w-7xl mx-auto mt-[28rem]">
         
 
         {/* Header Row */}
-        <div className="grid grid-cols-[150px_1fr_220px] gap-4 mb-6 px-8">
-          <div className="text-2xl font-bold text-black">Rank</div>
-          <div className="text-2xl font-bold text-black">Name</div>
-          <div className="text-2xl font-bold text-black text-right">Time <span className='font-normal text-[20px]'>(in minutes)</span> </div>
+        <div className="grid grid-cols-[200px_1fr_240px]">
+          <div className="text-4xl ml-4 font-bold text-white py-6 px-3 border-r-2 border-[#96989A]">Rank</div>
+          <div className="text-4xl ml-4 font-bold text-white py-6 px-3 border-r-2 border-[#96989A]">Player Name</div>
+          <div className="text-4xl ml-4 font-bold text-white py-6 px-3">Time <span className='font-normal text-[20px]'>(min.)</span> </div>
         </div>
 
         {/* Leaderboard Entries */}
-        <div className="space-y-2">
+        <div>
           {loading ? (
             <div className="text-center py-16">
               <p className="text-black text-2xl">Loading leaderboard...</p>
             </div>
-          ) : leaderboard.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="text-black text-2xl mb-2">No attempts yet</p>
-              <p className="text-black text-xl">Be the first to take the quiz!</p>
-            </div>
           ) : (
-            leaderboard.slice(0, 10).map((attempt, index) => (
-              <div
-                key={attempt.id}
-                className="flex items-center"
-              >
-                {/* Rank Badge */}
+            Array.from({ length: 10 }).map((_, index) => {
+              const attempt = leaderboard[index];
+              return (
                 <div
-                  className="w-36 h-14 flex items-center justify-center text-3xl font-bold text-white bg-[#B98BB8] border-2 border-white shadow-lg relative z-10"
-                  style={{ borderRadius: '200px' }}
+                  key={index}
+                  className="grid grid-cols-[200px_1fr_240px]"
                 >
-                  {index + 1}
-                </div>
+                  {/* Rank Column */}
+                  <div className="flex items-center justify-center py-6 px-3 border-r-2 border-b-2 border-[#96989A]">
+                    <div
+                      className="w-36 h-14 flex items-center justify-center text-4xl font-bold text-[#96989A] relative z-10"
+                      style={{ borderRadius: '200px' }}
+                    >
+                      {index + 1}
+                    </div>
+                  </div>
 
-                {/* Name Section */}
-                <div className="flex-1 h-14 bg-black/10 flex items-center px-16 text-2xl font-semibold text-[#5F259D] border-y-2 border-white shadow-lg -mx-8">
-                  {attempt.name}
-                </div>
+                  {/* Name Column */}
+                  <div className="flex items-center py-6 px-3 text-4xl  font-semibold text-[#96989A] border-r-2 border-b-2 border-[#96989A]">
+                   <div className="ml-4"> {attempt?.name || ''} </div>
+                  </div>
 
-                {/* Time Section */}
-                <div
-                  className="w-56 h-14 bg-white flex items-center justify-center text-2xl font-bold text-[#B98BB8] border-2 border-white shadow-lg relative z-10"
-                  style={{ borderRadius: '200px' }}
-                >
-                  {formatTime(attempt.timeTakenMs)}
+                  {/* Time Column */}
+                  <div className="flex items-center justify-start py-6 px-3 border-b-2 border-[#96989A]">
+                    <div
+                      className="w-56 h-14 bg-white flex items-center text-left text-4xl font-bold text-[#96989A] relative z-10"
+                      style={{ borderRadius: '200px' }}
+                    >
+                     <div className="ml-2"> {attempt ? formatTime(attempt.timeTakenMs) : ''}</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           )}
+        </div>
+
+        {/* Home Button */}
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={onBack}
+            className="hover:scale-110 transition-transform"
+          >
+            <img src="/home.png" alt="Home" className="w-20 h-20 mt-8" />
+          </button>
         </div>
       </div>
     </div>

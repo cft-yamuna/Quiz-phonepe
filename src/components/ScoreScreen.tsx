@@ -123,62 +123,70 @@ export default function ScoreScreen({ attempt, attemptId, onViewLeaderboard, onR
         </button>
       )}
 
-      <div className="w-full max-w-3xl text-center ">
+      <div className="w-full max-w-4xl text-center ">
         {/* Score */}
-        <div className="mb-[32rem] mt-[-30rem] gap-16 flex flex-col items-center justify-center">
+        <div className="mb-[2rem] mt-[-20rem] gap-20 flex flex-col items-center justify-center">
           {/* Reverted Score title and value styles */}
-          <h1 className="text-6xl font-extrabold bg-gradient-to-r from-[#41B646] to-[#A8D61F] bg-clip-text text-transparent">
+          <h1 className="text-8xl font-extrabold bg-gradient-to-r from-[#41B646] to-[#A8D61F] bg-clip-text text-transparent">
             Score
           </h1>
-          <p className="text-9xl font-extrabold text-[#266FB5] ">
+          <p className="text-[12rem] font-extrabold text-[#266FB5] ">
             {attempt.score}/10
-            
           </p>
-          <p className="text-6xl font-bold text-black">
-            Time : {formatTime(attempt.timeTakenMs)}
-          </p>
+          <div className="w-full max-w-3xl flex flex-col items-center gap-4">
+            <div className="w-full max-w-3xl h-1 bg-[linear-gradient(to_right,transparent,_#41B646_20%,_#A8D61F_80%,transparent)]"></div>
+            <p className="text-7xl font-bold bg-gradient-to-r from-[#41B646] to-[#A8D61F] bg-clip-text text-transparent mt-8 mb-[-10rem]">
+              Time : {formatTime(attempt.timeTakenMs)}
+            </p></div>
         </div>
 
         {/* Time */}
-        <div className="mb-12">
-          {/* Reverted Time style */}
-          
-        </div>
+
 
         {/* Message and Rank: Reverted to original inline display, removed the green card */}
-        <div className=" ">
-          <p className="text-2xl text-black leading-relaxed mb-16">
-            <span className="font-bold text-4xl ">Hi {attempt.name}, {scoreMessage.bold}</span>
-            <br />
-            {scoreMessage.normal}
-            {scoreMessage.extra && (
-              <>
-                <br />
-                {scoreMessage.extra}
-              </>
-            )}
-          </p>
-        </div>
+<div className="flex flex-col items-center justify-center text-center text-white leading-relaxed mt-[8rem] pt-10">
 
-        {/* Rank */}
-        {attempt.score >= 8 && attempt.score <= 10 && (
-          <div className="mb-16">
-            <p className="text-4xl font-extrabold text-[#8559B7]">
-              You are currently at {rank > 0 ? `${rank}${getRankSuffix(rank)}` : '-'} Rank.
+  {/* Greeting + Achievement */}
+  <p className="mb-4 mt-[4rem] leading-[1.6]">
+    
+    <span className="block text-6xl font-semibold tracking-wide mt-16">
+      Hi {attempt.name},
+    </span>
+
+    <span className="block text-6xl font-semibold mt-10">
+      {scoreMessage.bold}
+    </span>
+
+    <span className="block text-5xl font-medium opacity-95 mt-16 leading-[1.6]">
+      {scoreMessage.normal}
+    </span>
+
+    {scoreMessage.extra && (
+      <span className="block text-3xl font-medium opacity-90 leading-[1.4] mt-10">
+        {scoreMessage.extra}
+      </span>
+    )}
+
+  </p>
+
+
+          {/* Rank Display */}
+          {attempt.score >= 8 && attempt.score <= 10 && (
+            <p className="text-3xl mb-10">
+              Your current rank is <span className="font-bold">{rank}{getRankSuffix(rank)}</span> among all participants!
             </p>
-          </div>
-        )}
+          )}
 
-        {/* View Leaderboard Button */}
-        <div className="flex justify-center">
+          {/* Leaderboard Button */}
           <button
             onClick={onViewLeaderboard}
-            className="px-16 py-5 bg-[#5F259D] text-white text-3xl font-bold hover:bg-[#4a1d7a] transition-all hover:scale-105"
-            style={{ borderRadius: '200px', boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)' }}
+            className="px-16 py-12 bg-[#266FB5] text-white text-5xl font-bold rounded-full shadow-lg hover:scale-105 transition mb-[-22rem] mt-40"
           >
-            View Leaderboard
+            View Leader Board
           </button>
+
         </div>
+
       </div>
     </div>
   );
