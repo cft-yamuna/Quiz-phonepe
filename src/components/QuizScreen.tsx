@@ -98,7 +98,7 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
   };
 
   return (
-    <div className="min-h-screen p-6 flex items-center justify-center bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: 'url(/bg3.png)' }}>
+    <div className="min-h-screen p-6 bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: 'url(/bg3.png)' }}>
       {/* Home Button */}
       {onBackToHome && (
         <button
@@ -119,7 +119,7 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
         </div>
       </div>
 
-      <div className="w-full max-w-full px-20 mt-20">
+      <div className="w-full max-w-full px-20 pt-60">
         {/* Question Number Badge - Fixed Position */}
         <div className="flex justify-center mb-8">
           <div className="w-32 h-32 rounded-full bg-[#266FB5] border-[1px] border-dashed border-white flex items-center justify-center">
@@ -129,14 +129,14 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
           </div>
         </div>
 
-        {/* Question Card */}
-        <div className="pb-10 mb-16">
+        {/* Question Card - Fixed Height Container */}
+        <div className="pb-10 mb-16 min-h-[120px] flex items-start justify-center">
           <h2 className="text-4xl font-extrabold text-white text-center leading-relaxed">
             {currentQuestion.question}
           </h2>
         </div>
 
-        {/* Options */}
+        {/* Options - Scrollable if needed */}
         <div className="mb-16">
           <div className="flex flex-col gap-8">
             {renderOption('A', currentQuestion.optionA)}
@@ -147,7 +147,7 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
         </div>
 
         {/* Next Button */}
-        <div className="flex justify-center">
+        <div className="flex justify-center pb-8">
           <button
             onClick={handleNext}
             disabled={!selectedAnswer}
