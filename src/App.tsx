@@ -4,7 +4,7 @@ import FormScreen from './components/FormScreen';
 import QuizScreen from './components/QuizScreen';
 import ScoreScreen from './components/ScoreScreen';
 import LeaderboardScreen from './components/LeaderboardScreen';
-import { getRandomQuestions, Question } from './data/questions';
+import { getLevelWiseQuestions, Question } from './data/questions';
 import { Screen, UserAnswer, QuizAttempt } from './types/quiz';
 import { saveAttempt, checkMobileExists } from './utils/storage';
 
@@ -32,7 +32,7 @@ function App() {
     setUserName(name);
     setUserMobile(mobile);
     setUserEmail(email);
-    setQuizQuestions(getRandomQuestions(6));
+    setQuizQuestions(getLevelWiseQuestions());
     setCurrentScreen('quiz');
   };
 

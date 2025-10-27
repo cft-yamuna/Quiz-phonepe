@@ -20,6 +20,27 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
   const currentQuestion = questions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
+  // Determine current level based on question index
+  // Level 1: questions 0-2 (3 questions)
+  // Level 2: questions 3-6 (4 questions)
+  // Level 3: questions 7-9 (3 questions)
+  const getCurrentLevel = () => {
+    if (currentQuestionIndex < 3) return 1;
+    if (currentQuestionIndex < 7) return 2;
+    return 3;
+  };
+
+  const getLevelLabel = (level: number) => {
+    switch (level) {
+      case 1: return 'Beginner';
+      case 2: return 'Intermediate';
+      case 3: return 'Advanced';
+      default: return '';
+    }
+  };
+
+  const currentLevel = getCurrentLevel();
+
   useEffect(() => {
     if (!isTimerRunning) return;
 
@@ -103,23 +124,31 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
       {onBackToHome && (
         <button
           onClick={onBackToHome}
-          className="absolute top-12 left-12 hover:scale-110 transition-transform z-50"
+          className="absolute top-16 left-12 hover:scale-110 transition-transform z-50"
         >
           <img src="/home.png" alt="Home" className="w-16 h-16" />
         </button>
       )}
 
-      <div className="absolute top-12 right-12 flex flex-col items-center">
-        <div className="relative flex flex-col items-center w-32 ">
-          <img src="/clock.png" alt="clock" className="absolute top-0 left-1/2 transform -translate-x-1/2 object-contain" style={{ zIndex: 0, width: '100%', height: 'auto' }} />
-          <div className="text-6xl font-bold text-[#5F259D] font-mono relative mt-6" style={{ zIndex: 1 }}>
-            {Math.floor(elapsedTime / 1000)}
-          </div>
-          <div className="text-3xl mt-[-12%] text-[#5F259D] relative" style={{ zIndex: 1 }}>sec</div>
+      {/* Level Indicator */}
+      <div className="absolute top-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-50">
+        <div className="text-center">
+          <div className="text-white text-2xl font-medium">LEVEL {currentLevel}</div>
+          <div className="text-white text-6xl font-bold">{getLevelLabel(currentLevel)}</div>
         </div>
       </div>
 
-      <div className="w-full max-w-full px-20 pt-60">
+      <div className="absolute top-12 right-12 flex flex-col items-center">
+        <div className="relative flex flex-col items-center w-32 ">
+          <img src="/clock.png" alt="clock" className="absolute top-0 left-1/2 transform -translate-x-1/2 object-contain" style={{ zIndex: 0, width: '100%', height: 'auto' }} />
+          <div className="text-6xl font-bold text-[#266FB5] font-mono relative mt-6" style={{ zIndex: 1 }}>
+            {Math.floor(elapsedTime / 1000)}
+          </div>
+          <div className="text-3xl mt-[-12%] text-[#266FB5] relative" style={{ zIndex: 1 }}>sec</div>
+        </div>
+      </div>
+
+      <div className="w-full max-w-full px-20 pt-80">
         {/* Question Number Badge - Fixed Position */}
         <div className="flex justify-center mb-8">
           <div className="w-32 h-32 rounded-full bg-[#266FB5] border-[1px] border-dashed border-white flex items-center justify-center">
