@@ -17,7 +17,12 @@ export async function getLeaderboard(): Promise<QuizAttempt[]> {
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase query error:', error);
+      throw error;
+    }
+
+    console.log('Raw data from Supabase:', data);
 
     const attempts: QuizAttempt[] = (data || []).map((record) => ({
       id: record.id.toString(),
@@ -28,6 +33,8 @@ export async function getLeaderboard(): Promise<QuizAttempt[]> {
       timeTakenMs: parseTimeToMs(record.time || '00:00:000'),
       completedAt: new Date(record.created_at).getTime(),
     }));
+
+    console.log('Mapped attempts:', attempts);
 
     cachedLeaderboard = attempts;
     cacheTime = Date.now();
@@ -76,9 +83,8 @@ export async function getSortedLeaderboard(): Promise<QuizAttempt[]> {
 
 export async function getTopLeaderboard(limit: number = 10): Promise<QuizAttempt[]> {
   const sorted = await getSortedLeaderboard();
-  // Filter for only perfect scores (6/6)
-  const perfectScores = sorted.filter(attempt => attempt.score === 6);
-  return perfectScores.slice(0, limit);
+  // Return top entries without filtering by score
+  return sorted.slice(0, limit);
 }
 
 export async function getRank(attemptId: string): Promise<number> {

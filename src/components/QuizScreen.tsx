@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Clock, CheckCircle2, XCircle } from 'lucide-react';
 import { Question } from '../data/questions';
 import { UserAnswer } from '../types/quiz';
-import { formatTime } from '../utils/storage';
 
 interface QuizScreenProps {
   questions: Question[];
@@ -50,6 +48,17 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
 
     return () => clearInterval(interval);
   }, [isTimerRunning]);
+
+  // Auto-advance to next question after 5 seconds
+  useEffect(() => {
+    if (!selectedAnswer) return;
+
+    const timeout = setTimeout(() => {
+      handleNext();
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, [selectedAnswer]);
 
   const handleAnswerSelect = (answer: 'A' | 'B' | 'C' | 'D') => {
     if (selectedAnswer) return;
@@ -141,10 +150,10 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
       <div className="absolute top-12 right-12 flex flex-col items-center">
         <div className="relative flex flex-col items-center w-32 ">
           <img src="/clock.png" alt="clock" className="absolute top-0 left-1/2 transform -translate-x-1/2 object-contain" style={{ zIndex: 0, width: '100%', height: 'auto' }} />
-          <div className="text-6xl font-bold text-[#266FB5] font-mono relative mt-6" style={{ zIndex: 1 }}>
+          <div className="text-6xl font-bold text-white font-mono relative mt-6" style={{ zIndex: 1 }}>
             {Math.floor(elapsedTime / 1000)}
           </div>
-          <div className="text-3xl mt-[-12%] text-[#266FB5] relative" style={{ zIndex: 1 }}>sec</div>
+          <div className="text-3xl mt-[-12%] text-white relative" style={{ zIndex: 1 }}>sec</div>
         </div>
       </div>
 
@@ -173,22 +182,6 @@ export default function QuizScreen({ questions, onComplete, onBackToHome }: Quiz
             {renderOption('C', currentQuestion.optionC)}
             {renderOption('D', currentQuestion.optionD)}
           </div>
-        </div>
-
-        {/* Next Button */}
-        <div className="flex justify-center pb-8">
-          <button
-            onClick={handleNext}
-            disabled={!selectedAnswer}
-            className={`px-12 py-4 text-3xl font-bold transition-all border-2 ${
-              selectedAnswer
-                ? 'bg-transparent text-white border-white hover:scale-105 cursor-pointer'
-                : 'bg-transparent text-white border-white cursor-not-allowed opacity-60'
-            }`}
-            style={{ borderRadius: '200px' }}
-          >
-            {isLastQuestion ? 'Finish Quiz' : 'Next Question'}
-          </button>
         </div>
       </div>
     </div>

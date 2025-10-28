@@ -13,10 +13,10 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       setLoading(true);
-      const data = await getTopLeaderboard(50);
-      // Filter to only show people who scored 10
-      const filteredData = data.filter(attempt => attempt.score === 10);
-      setLeaderboard(filteredData);
+      const data = await getTopLeaderboard(10);
+      console.log('Leaderboard data received:', data);
+      console.log('Number of entries:', data.length);
+      setLeaderboard(data);
       setLoading(false);
     };
     fetchLeaderboard();
