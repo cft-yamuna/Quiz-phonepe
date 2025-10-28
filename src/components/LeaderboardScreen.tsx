@@ -14,7 +14,9 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
     const fetchLeaderboard = async () => {
       setLoading(true);
       const data = await getTopLeaderboard(50);
-      setLeaderboard(data);
+      // Filter to only show people who scored 10
+      const filteredData = data.filter(attempt => attempt.score === 10);
+      setLeaderboard(filteredData);
       setLoading(false);
     };
     fetchLeaderboard();
