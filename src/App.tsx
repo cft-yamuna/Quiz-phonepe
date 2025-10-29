@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import StartScreen from './components/StartScreen';
+import GuidelinesScreen from './components/GuidelinesScreen';
 import FormScreen from './components/FormScreen';
 import QuizScreen from './components/QuizScreen';
 import ScoreScreen from './components/ScoreScreen';
@@ -18,6 +19,10 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleStartQuiz = () => {
+    setCurrentScreen('guidelines');
+  };
+
+  const handleGuidelinesNext = () => {
     setCurrentScreen('form');
   };
 
@@ -85,6 +90,8 @@ function App() {
   return (
     <>
       {currentScreen === 'start' && <StartScreen onStart={handleStartQuiz} onViewLeaderboard={handleViewLeaderboard} />}
+
+      {currentScreen === 'guidelines' && <GuidelinesScreen onNext={handleGuidelinesNext} />}
 
       {currentScreen === 'form' && <FormScreen onStartQuiz={handleFormSubmit} onBackToHome={handleBackToHome} />}
 

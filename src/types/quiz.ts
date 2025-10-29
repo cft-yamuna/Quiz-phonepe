@@ -15,4 +15,4 @@ export interface UserAnswer {
   isCorrect: boolean;
 }
 
-export type Screen = 'start' | 'form' | 'quiz' | 'score' | 'leaderboard';
+export type Screen = 'start' | 'guidelines' | 'form' | 'quiz' | 'score' | 'leaderboard';

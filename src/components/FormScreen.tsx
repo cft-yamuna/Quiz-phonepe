@@ -55,7 +55,7 @@ export default function FormScreen({ onStartQuiz }: FormScreenProps) {
   return (
     <div className="min-h-screen p-6 flex items-start justify-start pt-20 pl-20 bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: 'url(/bg2.png)' }}>
       <div className="w-full flex items-start justify-start" >
-        <div className="w-full max-w-4xl  mt-16">
+        <div className="w-full max-w-4xl  mt-28">
             <form onSubmit={handleSubmit} >
               <div className="space-y-12">
               <div >
