@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle2, AlertCircle, BookOpen, Clock, Target } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 
 interface FormScreenProps {
   onStartQuiz: (name: string, mobile: string, email?: string) => Promise<void>;
@@ -54,23 +54,30 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
   };
 
   return (
-    <div className="min-h-screen p-6 flex items-center justify-end bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: 'url(/bg2.png)' }}>
+    <div
+      className="min-h-screen p-6 flex items-center justify-end bg-cover bg-center bg-no-repeat relative"
+      style={{ backgroundImage: 'url(/bg2.png)' }}
+    >
       {/* Home Button */}
       {onBackToHome && (
         <button
           onClick={onBackToHome}
-          className="absolute top-12 left-12 hover:scale-110 transition-transform z-50"
+          className="absolute top-4 left-10 hover:scale-110 transition-transform z-50"
         >
           <img src="/home.png" alt="Home" className="w-16 h-16" />
         </button>
       )}
 
-      <div className="w-1/2 flex items-center justify-center  " >
-        <div className="w-full max-w-2xl ">
-            <form onSubmit={handleSubmit} >
-              <div className="space-y-12">
-              <div >
-                <label htmlFor="name" className="block text-4xl text-[#5F259D] font-bold  mb-4" style={{ fontFamily: 'extrabold' }}>
+      <div className="w-1/2 flex items-center justify-center">
+        <div className="w-full max-w-2xl mt-18 ml-12">
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-4">
+              {/* Name */}
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-2xl text-[#5F259D] font-bold mb-1"
+                >
                   Name*
                 </label>
                 <input
@@ -78,12 +85,16 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
                   id="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white ${
+                  className={`px-4 py-2 border-2 text-3xl transition-colors bg-white ${
                     errors.name
                       ? 'border-red-300 focus:border-red-500'
                       : 'border-[#7960BF] focus:border-purple-400'
                   } focus:outline-none`}
-                  style={{ borderRadius: '14px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
+                  style={{
+                    width: '80%',
+                    borderRadius: '14px',
+                    boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)',
+                  }}
                 />
                 {errors.name && (
                   <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
@@ -93,8 +104,12 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
                 )}
               </div>
 
+              {/* Mobile */}
               <div>
-                <label htmlFor="mobile" className="block text-4xl text-[#5F259D] font-bold mb-4" style={{ fontFamily: 'extrabold' }}>
+                <label
+                  htmlFor="mobile"
+                  className="block text-2xl text-[#5F259D] font-bold mb-1"
+                >
                   Mobile No.*
                 </label>
                 <input
@@ -103,17 +118,19 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
                   value={mobile}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, '');
-                    if (value.length <= 10) {
-                      setMobile(value);
-                    }
+                    if (value.length <= 10) setMobile(value);
                   }}
                   maxLength={10}
-                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white ${
+                  className={`px-4 py-2 border-2 text-3xl transition-colors bg-white ${
                     errors.mobile
                       ? 'border-red-300 focus:border-red-500'
                       : 'border-[#7960BF] focus:border-purple-400'
                   } focus:outline-none`}
-                  style={{ borderRadius: '14px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
+                  style={{
+                    width: '80%',
+                    borderRadius: '14px',
+                    boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)',
+                  }}
                 />
                 {errors.mobile && (
                   <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
@@ -123,21 +140,29 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
                 )}
               </div>
 
+              {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-4xl text-[#5F259D] font-bold mb-4" style={{ fontFamily: 'extrabold' }}>
-                  Email ID <span className='font-normal'>(Optional)</span> 
+                <label
+                  htmlFor="email"
+                  className="block text-2xl text-[#5F259D] font-bold mb-1"
+                >
+                  Email ID <span className="font-normal">(Optional)</span>
                 </label>
                 <input
                   type="email"
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full px-8 py-4 border-2 text-3xl transition-colors bg-white ${
+                  className={`px-4 py-2 border-2 text-3xl transition-colors bg-white ${
                     errors.email
                       ? 'border-red-300 focus:border-red-500'
                       : 'border-[#7960BF] focus:border-purple-400'
                   } focus:outline-none`}
-                  style={{ borderRadius: '14px', boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)' }}
+                  style={{
+                    width: '80%',
+                    borderRadius: '14px',
+                    boxShadow: '0 0 25px rgba(95, 37, 157, 0.5)',
+                  }}
                 />
                 {errors.email && (
                   <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
@@ -147,18 +172,31 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
                 )}
               </div>
 
+              {/* Terms */}
               <div>
-                <label className="flex mt-12 items-start gap-3 cursor-pointer group">
-                  <input
-                    type="checkbox"
-                    checked={agreedToTerms}
-                    onChange={(e) => setAgreedToTerms(e.target.checked)}
-                    className="mt-1 w-24 h-12 rounded border-2  text-[#5F259D] cursor-pointer "
-                  />
-                  <span className="text-2xl text-black italic">
-                    *By continuing, you allow PhonePe to use your details for notifying your winning status and coordinating the delivery of the prize you may have
-                  </span>
-                </label>
+                <div className="mt-8">
+                  <label className="flex flex-col cursor-pointer group">
+                    <div className="flex items-center gap-3 mb-2">
+                      <input
+                        type="checkbox"
+                        checked={agreedToTerms}
+                        onChange={(e) => setAgreedToTerms(e.target.checked)}
+                        className="w-6 h-6 rounded border-2 text-[#5F259D] cursor-pointer"
+                      />
+                      <span className="text-lg font-semibold text-[#5F259D]">
+                        Terms & Conditions
+                      </span>
+                    </div>
+                    <div
+                      className="text-lg text-black italic text-justify leading-relaxed"
+                      style={{ width: '80%' }}
+                    >
+                      *By continuing, you allow PhonePe to use your details for notifying your
+                      winning status and coordinating the delivery of the prize you may have.
+                    </div>
+                  </label>
+                </div>
+
                 {errors.terms && (
                   <p className="mt-2 text-sm text-red-600 flex items-center gap-1 bg-white px-2 py-1 rounded">
                     <AlertCircle className="w-4 h-4" />
@@ -166,18 +204,23 @@ export default function FormScreen({ onStartQuiz, onBackToHome }: FormScreenProp
                   </p>
                 )}
               </div>
-              </div>
-              <div className="flex justify-start mt-14">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-[280px] py-5 bg-[#5F259D] text-white text-3xl font-bold transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 "
-                  style={{ borderRadius: '60px', boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)' }}
-                >
-                  {isSubmitting ? 'Checking...' : 'Start Quiz'}
-                </button>
-              </div>
-            </form>
+            </div>
+
+            {/* Submit Button */}
+            <div className="flex justify-start mt-14">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-[240px] py-5 bg-[#5F259D] text-white text-2xl font-bold transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                style={{
+                  borderRadius: '60px',
+                  boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)',
+                }}
+              >
+                {isSubmitting ? 'Checking...' : 'Start Quiz'}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

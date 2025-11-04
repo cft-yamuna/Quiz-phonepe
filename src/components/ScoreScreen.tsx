@@ -60,31 +60,31 @@ export default function ScoreScreen({ attempt, attemptId, onViewLeaderboard, onR
       {onBackToHome && (
         <button
           onClick={onBackToHome}
-          className="absolute top-12 left-12 hover:scale-110 transition-transform"
+          className="absolute top-12 left-12  hover:scale-110 transition-transform"
         >
           <img src="/home.png" alt="Home" className="w-16 h-16" />
         </button>
       )}
 
-      <div className="w-full max-w-3xl text-center ">
+      <div className="w-full max-w-2xl text-center ">
         {/* Score */}
         <div className="mb-8">
-          <h1 className="text-8xl font-bold text-[#8559B7] mb-4 " style={{ fontFamily: 'extrabold' }}>
+          <h1 className="text-7xl font-bold text-[#8559B7] mb-4 " style={{ fontFamily: 'extrabold' }}>
             Score : {attempt.score}/6
           </h1>
         </div>
 
         {/* Time */}
         <div className="mb-12">
-          <p className="text-6xl font-bold text-black">
+          <p className="text-4xl font-bold text-black">
             Time : {formatTime(attempt.timeTakenMs)}
           </p>
         </div>
 
         {/* Message */}
         <div className=" ">
-          <p className="text-2xl text-black leading-relaxed mb-16">
-            <span className="font-bold text-4xl ">Hi {attempt.name}, {scoreMessage.bold}</span>
+          <p className="text-xl text-black leading-relaxed mb-16">
+            <span className="font-bold text-3xl ">Hi {attempt.name}, {scoreMessage.bold}</span>
             <br />
             {scoreMessage.normal}
             {scoreMessage.extra && (
@@ -109,7 +109,7 @@ export default function ScoreScreen({ attempt, attemptId, onViewLeaderboard, onR
         <div className="flex justify-center">
           <button
             onClick={onViewLeaderboard}
-            className="px-16 py-5 bg-[#5F259D] text-white text-3xl font-bold hover:bg-[#4a1d7a] transition-all hover:scale-105"
+            className="px-16 py-5 bg-[#5F259D] text-white text-xl font-bold hover:bg-[#4a1d7a] transition-all hover:scale-105"
             style={{ borderRadius: '200px', boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)' }}
           >
             View Leaderboard
