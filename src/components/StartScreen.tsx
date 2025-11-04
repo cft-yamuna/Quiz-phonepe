@@ -9,7 +9,7 @@ export default function StartScreen({ onStart, onViewLeaderboard }: StartScreenP
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: 'url(/bg1.png)' }}>
       <div className="w-full max-w-4xl">
-        <div className="flex items-center justify-center gap-24 mt-[44rem]">
+        <div className="flex items-center justify-center gap-24 mt-[36rem]">
           <button
             onClick={onViewLeaderboard}
             className="group inline-flex items-center gap-3 px-10 py-4 bg-[#5F259D] text-white text-4xl font-semibold hover:bg-[#4a1d7a] transition-all hover:scale-105"
